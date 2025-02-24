@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class student {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("********** STUDENT GRADE CALCULATOR **********");
+        System.out.print("Enter the total number of subjects: ");
+        
+        int numSubjects = input.nextInt();
+        int totalScore = 0;
+
+        System.out.println("\nEnter the marks for each subject (out of 100):");
+        
+        for (int i = 1; i <= numSubjects; i++) {
+            int score;
+            while (true) {
+                System.out.print("Subject " + i + ": ");
+                score = input.nextInt();
+                if (score >= 0 && score <= 100) {
+                    break;
+                } else {
+                    System.out.println("Invalid marks! Please enter a value between 0 and 100.");
+                }
+            }
+            totalScore += score;
+        }
+
+        
+        double avgPercentage = (double) totalScore / numSubjects;
+        String finalGrade = calculateGrade(avgPercentage);
+
+    
+        System.out.println("\n********** RESULT **********");
+        System.out.println("Total Marks: " + totalScore);
+        System.out.printf("Average Percentage: %.2f%%\n", avgPercentage);
+        System.out.println("Final Grade: " + finalGrade);
+
+        input.close();
+    }
+
+    
+    public static String calculateGrade(double percentage) {
+        if (percentage >= 90) return "A+";
+        else if (percentage >= 80) return "A";
+        else if (percentage >= 70) return "B";
+        else if (percentage >= 60) return "C";
+        else if (percentage >= 50) return "D";
+        else if (percentage >= 40) return "E";
+        else return "Fail (F)";
+    }
+}
